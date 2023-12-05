@@ -2,6 +2,7 @@ dash
 dash-bootstrap-components
 numpy
 pandas
+wordcloud
 scikit_learn
 plotly
 praw
