@@ -6,8 +6,6 @@ Display Sentiment Analysis
 import dash
 from dash import html, register_page, get_asset_url, dash_table
 
-import sys
-sys.path.append(r'C:\Users\user\Documents\GitHub\Final_Project_Redditpower')
 from sentiment_analysis import df_mean_compound 
 
 
