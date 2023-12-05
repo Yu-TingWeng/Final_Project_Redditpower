@@ -1,0 +1,16 @@
+dash
+numpy
+pandas
+scikit_learn
+plotly
+praw
+datetime
+selenium
+BeautifulSoup
+urllib.parse
+bs4
+requests
+matplotlib
+nltk
+yfinance
+gunicorn
