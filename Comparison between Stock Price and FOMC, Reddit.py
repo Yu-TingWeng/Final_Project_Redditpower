@@ -9,6 +9,10 @@ import yfinance as yf
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
+
+# Set working directory
+os.chdir(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
+
 # Import Dataframes
 path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 'FOMC sentiment analysis scores.xlsx'))

@@ -13,6 +13,9 @@ from nltk.stem import WordNetLemmatizer
 from nltk.sentiment import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 
+# Set working directory
+os.chdir(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
+
 path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 
 # Import FOMC Data

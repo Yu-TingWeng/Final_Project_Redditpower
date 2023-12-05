@@ -11,6 +11,9 @@ import pandas as pd
 
 dash.register_page(__name__, path='/')
 
+# Set working directory
+os.chdir(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
+
 # Import data
 path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 'FOMC sentiment analysis scores.xlsx'))
