@@ -12,7 +12,7 @@ import pandas as pd
 dash.register_page(__name__, path='/')
 
 # Import data
-path = r"C:\Users\user\Documents\GitHub\final-project-redditpower"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 'FOMC sentiment analysis scores.xlsx'))
 df_reddit = pd.read_excel(os.path.join(path, 'Reddit sentiment analysis scores.xlsx'))
 
