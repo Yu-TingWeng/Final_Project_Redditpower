@@ -1,5 +1,7 @@
 dash
 dash-bootstrap-components
+os
+re
 numpy
 pandas
 wordcloud
