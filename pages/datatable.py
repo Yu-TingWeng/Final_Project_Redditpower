@@ -11,7 +11,7 @@ import pandas as pd
 dash.register_page(__name__)
 
 
-path = r"C:/Users/user/Documents/GitHub/Final_Project_Redditpower"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 # Import FOMC Data
 df_fomc = pd.read_excel(os.path.join(path, 'scraped_fomc_data.xlsx'))
 df_fomc = df_fomc[df_fomc['Title'].str.contains('FOMC statement')]

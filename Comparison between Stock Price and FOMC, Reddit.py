@@ -10,7 +10,7 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 
 # Import Dataframes
-path = r"C:/Users/user/Documents/GitHub/Final_Project_Redditpower"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 'FOMC sentiment analysis scores.xlsx'))
 df_reddit = pd.read_excel(os.path.join(path, 'Reddit sentiment analysis scores.xlsx'))
 
