@@ -6,8 +6,7 @@ plotly
 praw
 datetime
 selenium
-beautifulsoup4==4.10.0
-urllib.parse
+beautifulsoup4
 requests
 matplotlib
 nltk
