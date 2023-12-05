@@ -13,5 +13,5 @@ requests
 matplotlib
 nltk
 yfinance
-openpyxl==3.0.12
+openpyxl>=3.0.0,<4.0.0
 gunicorn
