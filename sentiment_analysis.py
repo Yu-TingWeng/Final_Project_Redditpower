@@ -168,7 +168,7 @@ data = {
     'Mean Compound Score': [mean_compound, mean_compound_rd]
 }
 
-# df_mean_compound = pd.DataFrame(data)
+df_mean_compound = pd.DataFrame(data)
 
 
 # 3. Histogram of compound scores
