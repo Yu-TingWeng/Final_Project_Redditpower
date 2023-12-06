@@ -22,6 +22,12 @@ df_fomc['Source'] = 'FOMC Statement'
 df_reddit['Source'] = 'Reddit Posts'
 data = pd.concat([df_fomc, df_reddit])
 
+# Prepare some strings
+project_purpose = "This project seeks to explore the relationship between the sentiment espoused on the popular internet forum, \
+           Reddit’s r/Wallstreetbets subreddit, and the stock market (as a proxy for US economy), and compare it to that of \
+           the Federal Open Market Committee (FOMC) statements, one year from start of the latest interest rate hike cycle in March 2022. \
+           Known for risky stock bets, edgy humor, and viral popularity during the COVID-19 Pandemic, we wanted to know whether the Redditors \
+           on r/Wallstreetbets have an accurate gauge of the macroeconomy – is it a Hitchhiker’s Guide to the moon, or to the ground?"
 
 # Prepare some functions
 def filter_data(data, selected_sentiments, selected_sources):
@@ -79,7 +85,7 @@ dropdown_sentiment = dbc.Card([
 
 # LAYOUT PAGE
 layout = html.Div([
-    html.H4(children='The Purpose of our final project is to...'),
+    html.H5(children= project_purpose, style={'color': '#0C2D48', 'line-height': '2'}),
     html.Div([
         # Dropdowns Menu
         dbc.Row([

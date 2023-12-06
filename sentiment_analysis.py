@@ -239,6 +239,7 @@ plot_top_n_bigrams(df_reddit_sentiment['clean text'], df_name='Reddit')
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.svm import SVC
 
 # Split the Data
 X_train, X_test, y_train, y_test = train_test_split(df_reddit_sentiment['clean text'], df_reddit_sentiment['sentiment'], test_size=0.3, random_state=0)
@@ -249,25 +250,23 @@ X_train_tfidf = tfidf_vectorizer.fit_transform(X_train)
 X_test_tfidf = tfidf_vectorizer.transform(X_test)
 
 # Using Support Vector Machines (SVM):
-from sklearn.svm import SVC
-#svm_model = SVC(kernel='linear')
 svm_model = SVC(kernel='rbf', C=1.0)
 svm_model.fit(X_train_tfidf, y_train)
 svm_pred = svm_model.predict(X_test_tfidf)
 accuracy = accuracy_score(y_test, svm_pred)
-# print(f'Accuracy: {accuracy}')
-# print(classification_report(y_test, svm_pred))
+print(f'Accuracy: {accuracy}')
+print(classification_report(y_test, svm_pred))
 
 # Cross-Validation
-# from sklearn.model_selection import cross_val_score
-# scores = cross_val_score(svm_model, X_train_tfidf, y_train, cv=5)
-# print(f'Cross-Validation Scores: {scores}')
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(svm_model, X_train_tfidf, y_train, cv=5)
+print(f'Cross-Validation Scores: {scores}')
 
 
 # References:
 # Sentiment Analysis using SVM: https://medium.com/scrapehero/sentiment-analysis-using-svm-338d418e3ff1
 # CountVectorizer: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer
 # TfidfVectorizer: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
-# Sentiment Analysis: https://www.geeksforgeeks.org/amazon-product-reviews-sentiment-analysis-in-python/
+# Sentiment Analysis:https://realpython.com/python-nltk-sentiment-analysis/
 # Lemmatization Approaches: https://www.geeksforgeeks.org/python-lemmatization-approaches-with-examples/
 # NLP: https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/

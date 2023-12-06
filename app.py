@@ -31,9 +31,9 @@ navbar = dbc.NavbarSimple(
 app.layout = html.Div([
     dbc.Container([
         html.H1(children='r/Wallstreetbets: A Hitchiker\'s Guide to the Moon or to the Ground?', style={'color': "#0C2D48", 'font-weight': 'bold'}),
-        html.Div(children='The University of Chicago, Harris School of Public Policy'),
-        html.Div(children='Data and Programming for Public Policy II - Python Programming: Final Project'),
-        html.Div(children='Team Members: Andrew Chen, Yuting Weng'),
+        html.H5(children='The University of Chicago, Harris School of Public Policy'),
+        html.H5(children='Data and Programming for Public Policy II - Python Programming: Final Project'),
+        html.H5(children='Team Members: Andrew Chen, Yuting Weng'),
         html.Br(),
         # Navigation bar
         html.Div(navbar),
