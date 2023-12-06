@@ -2,17 +2,14 @@
 Display Sentiment Analysis
 
 """
-
 import dash
 from dash import html, register_page, get_asset_url, dash_table
-
 from sentiment_analysis import df_mean_compound 
 
 
-dash.register_page(__name__, path="/analysis_dataviz")  # Provide a unique path for the page
+dash.register_page(__name__, path="/analysis_dataviz") 
 
-
-
+# LAYOUT PAGE
 layout = html.Div([
     html.H2("1. Word Cloud", style={'color': "#0C2D48", 'font-weight': 'bold'}),
     html.Div("Add Some Descriptions"),

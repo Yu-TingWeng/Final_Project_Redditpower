@@ -9,13 +9,19 @@ import sentiment_analysis as sa
 
 dash.register_page(__name__)
 
-
+# LAYOUT PAGE
 layout = html.Div([
     dbc.Row([
-        dbc.Col(html.H1("Text Classification App"), width=12)
+        dbc.Col(html.H2("Text Classification App"), width=12)
     ]),
     dbc.Row([
-        dbc.Col(dcc.Textarea(id='input_text', placeholder='Enter text to classify...', rows=4, style={'width': '100%'}), width=12),
+        dbc.Col(html.Div("Note: Our model may not achieve high accuracy as we rely on a sentiment analyzer for sentiment classification initially.\
+                         A common practice to improve accuracy involves manually labeling sentiment and utilizing scikit-learn to build a machine learning model."), 
+                         style={'color': "#a9a9a2"}, width=12)
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col(dcc.Textarea(id='input_text', placeholder='Enter text to see whether it is positive, negative, or neutral...', rows=4, style={'width': '100%'}), width=12),
     ]),
     dbc.Row([
         dbc.Col(html.Button('Classify', id='classify_button', n_clicks=0), width=12),
@@ -25,7 +31,8 @@ layout = html.Div([
     ]),
 ]) 
 
-
+                
+# CALLBACKS
 @callback(
     Output('output_classification', 'children'),
     [Input('classify_button', 'n_clicks')],
@@ -42,5 +49,3 @@ def classify_text(n_clicks, input_text):
         return f'Predicted Sentiment: {prediction}'
 
     return ''
-
-

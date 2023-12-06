@@ -13,7 +13,6 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-
 # Import FOMC Data
 df_fomc = pd.read_excel('scraped_fomc_data.xlsx')
 df_fomc = df_fomc[df_fomc['Title'].str.contains('FOMC statement')]
@@ -24,6 +23,8 @@ df_reddit['created_at'] = pd.to_datetime(df_reddit['created_at'])
 start_date = '2022-03-01'
 end_date = '2023-03-31'
 df_reddit = df_reddit[(df_reddit['created_at'] >= start_date) & (df_reddit['created_at'] <= end_date)]
+
+
 
 # PART I: Preprocessing Data
 def preprocess_text(text):
@@ -36,7 +37,6 @@ def preprocess_text(text):
     return text
 
 df_reddit['text'] = df_reddit['text'].apply(preprocess_text)
-
 
 # Remove Stopwords
 nltk.download('stopwords')
@@ -56,7 +56,6 @@ def remove_stopwords(text):
 df_fomc['clean text'] = df_fomc['Linked Content'].apply(remove_stopwords)
 df_reddit['clean text'] = df_reddit['text'].apply(remove_stopwords)
 
-
 # Lemmatization
 nltk.download('wordnet')
 def lemmatize(column):
@@ -66,6 +65,7 @@ def lemmatize(column):
 
 df_fomc['clean text'] = lemmatize(df_fomc['clean text'])
 df_reddit['clean text'] = lemmatize(df_reddit['clean text'])
+
 
 
 # PART II: Sentiment Analysis
@@ -133,8 +133,8 @@ def sentiment_define(x):
 df_fomc_sentiment['sentiment'] = df_fomc_sentiment['compound'].apply(sentiment_define)
 df_reddit_sentiment['sentiment'] = df_reddit_sentiment['compound'].apply(sentiment_define)
 
-df_fomc_sentiment.to_excel("FOMC sentiment analysis scores.xlsx", index=False)
-df_reddit_sentiment.to_excel("Reddit sentiment analysis scores.xlsx", index=False)
+# df_fomc_sentiment.to_excel("FOMC sentiment analysis scores.xlsx", index=False)
+# df_reddit_sentiment.to_excel("Reddit sentiment analysis scores.xlsx", index=False)
 
 
 # PART III: Some Data Viz
@@ -153,10 +153,11 @@ def generate_word_cloud(data, text_column='', title=''):
     return fig, ax
 
 fig_fomc, ax_fomc = generate_word_cloud(df_fomc, text_column='clean text', title='FOMC Statement Word Cloud')
-fig_fomc.savefig('wordcloud_fomc.png')
+# fig_fomc.savefig('wordcloud_fomc.png')
 
 fig_reddit, ax_reddit = generate_word_cloud(df_reddit, text_column='clean text', title='Reddit Word Cloud')
-fig_reddit.savefig('wordcloud_reddit.png')
+# fig_reddit.savefig('wordcloud_reddit.png')
+
 
 # 2. Aggregate Sentiment Scores:
 mean_compound = df_fomc_sentiment['compound'].mean()
@@ -167,11 +168,11 @@ data = {
     'Mean Compound Score': [mean_compound, mean_compound_rd]
 }
 
-df_mean_compound = pd.DataFrame(data)
+# df_mean_compound = pd.DataFrame(data)
 
 
 # 3. Histogram of compound scores
-def plot_sentiment_histogram(df, df_name, save_filename=None):
+def plot_sentiment_histogram(df, df_name):
     '''
     Generate a histogram of compound sentiment scores for a DataFrame.
     '''
@@ -179,12 +180,9 @@ def plot_sentiment_histogram(df, df_name, save_filename=None):
     plt.title(f'Distribution of Compound Sentiment Scores for {df_name}')
     plt.xlabel('Compound Score')
     plt.ylabel('Frequency')
-    if save_filename:
-        plt.savefig(save_filename)
 
-
-plot_sentiment_histogram(df_fomc_sentiment, 'FOMC Statement', 'fomc_sentiment_histogram.png')
-plot_sentiment_histogram(df_reddit_sentiment, 'Reddit','reddit_sentiment_histogram.png')
+plot_sentiment_histogram(df_fomc_sentiment, 'FOMC Statement')
+plot_sentiment_histogram(df_reddit_sentiment, 'Reddit')
 
 
 # 4. Time Series Analysis:    
@@ -194,7 +192,7 @@ df_fomc_sentiment.set_index('Date', inplace=True)
 df_fomc_sentiment['compound'].plot(title='Time Series of Compound Sentiment Scores for FOMC Statement')
 plt.xlabel('Date')
 plt.ylabel('Compound Score')
-plt.savefig('fomc_sentiment_time_series.png')
+# plt.savefig('fomc_sentiment_time_series.png')
 
 # Reddit
 df_reddit_sentiment['created_at'] = pd.to_datetime(df_reddit_sentiment['created_at'])
@@ -204,34 +202,11 @@ plt.figure(figsize=(10, 6))
 monthly_mean.plot(title='Mean Compound Score by Month for Reddit')
 plt.xlabel('Date')
 plt.ylabel('Mean Compound Score')
-plt.savefig('reddit_sentiment_time_series.png')
+# plt.savefig('reddit_sentiment_time_series.png')
 
 
-# 5. Word Clouds for Positive, Negative, and Neutral Sentiments
-def generate_wordcloud(data, sentiment, text_column='clean text', background_color='white', title_prefix=''):
-    """
-    Generate a word cloud for a specific sentiment category.
-    """
-    sentiment_data = data[data['sentiment'] == sentiment]
-    sentiment_text = ' '.join(sentiment_data[text_column])
-    
-    wordcloud = WordCloud(width=800, height=400, random_state=21, max_font_size=110, background_color=background_color).generate(sentiment_text)
-    
-    plt.figure(figsize=(10, 6))
-    plt.imshow(wordcloud, interpolation="bilinear")
-    plt.title(f'{title_prefix}Word Cloud for {sentiment.capitalize()} Sentiment')
-    plt.axis('off')
-    plt.show()
-
-sentiments = ['positive', 'negative', 'neutral']
-
-for sentiment in sentiments:
-    generate_wordcloud(df_fomc_sentiment, sentiment, text_column='clean text', title_prefix='FOMC - ') 
-for sentiment in sentiments:
-    generate_wordcloud(df_reddit_sentiment, sentiment, text_column='clean text', title_prefix='Reddit - ')
-
-# 6. Plot TOP20 unigrams and bigrams by frequency
-def plot_top_n_bigrams(data, df_name, n=20, save_filename=None):
+# 5. Plot TOP20 unigrams and bigrams by frequency
+def plot_top_n_bigrams(data, df_name, n=20):
     """
     Plot the top N bigrams by frequency for a given DataFrame.
     """
@@ -253,17 +228,13 @@ def plot_top_n_bigrams(data, df_name, n=20, save_filename=None):
     plt.xlabel('Words')
     plt.ylabel('Count')
     plt.xticks(rotation=45, ha='right')
-    if save_filename:
-        plt.savefig(save_filename)
-    else:
-        plt.show()
 
-# Example usage:
-plot_top_n_bigrams(df_fomc_sentiment['clean text'], df_name='FOMC Statement', save_filename='top_bigrams_fomc.png')
-plot_top_n_bigrams(df_reddit_sentiment['clean text'], df_name='Reddit', save_filename='top_bigrams_reddit.png')
+plot_top_n_bigrams(df_fomc_sentiment['clean text'], df_name='FOMC Statement')
+plot_top_n_bigrams(df_reddit_sentiment['clean text'], df_name='Reddit')
 
 
-# PART IV: Build Machine Learning Model
+
+# PART IV: Build a Simple Machine Learning Model
 # Reddit :Using a classifier for sentiment analysis 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -284,14 +255,19 @@ svm_model = SVC(kernel='rbf', C=1.0)
 svm_model.fit(X_train_tfidf, y_train)
 svm_pred = svm_model.predict(X_test_tfidf)
 accuracy = accuracy_score(y_test, svm_pred)
-print(f'Accuracy: {accuracy}')
-print(classification_report(y_test, svm_pred))
+# print(f'Accuracy: {accuracy}')
+# print(classification_report(y_test, svm_pred))
 
 # Cross-Validation
-from sklearn.model_selection import cross_val_score
-scores = cross_val_score(svm_model, X_train_tfidf, y_train, cv=5)
-print(f'Cross-Validation Scores: {scores}')
+# from sklearn.model_selection import cross_val_score
+# scores = cross_val_score(svm_model, X_train_tfidf, y_train, cv=5)
+# print(f'Cross-Validation Scores: {scores}')
 
 
 # References:
 # Sentiment Analysis using SVM: https://medium.com/scrapehero/sentiment-analysis-using-svm-338d418e3ff1
+# CountVectorizer: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer
+# TfidfVectorizer: https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
+# Sentiment Analysis: https://www.geeksforgeeks.org/amazon-product-reviews-sentiment-analysis-in-python/
+# Lemmatization Approaches: https://www.geeksforgeeks.org/python-lemmatization-approaches-with-examples/
+# NLP: https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/

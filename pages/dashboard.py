@@ -1,17 +1,15 @@
 '''
 This file contains the dashboard page.
 '''
-
 import dash
 from dash import html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
-
 import pandas as pd
 
 dash.register_page(__name__, path='/')
 
-
+# Import Data
 df_fomc = pd.read_excel('FOMC sentiment analysis scores.xlsx')
 df_reddit = pd.read_excel('Reddit sentiment analysis scores.xlsx')
 
@@ -19,7 +17,7 @@ df_reddit = pd.read_excel('Reddit sentiment analysis scores.xlsx')
 df_fomc = df_fomc.rename(columns={'Date': 'date'})
 df_reddit = df_reddit.rename(columns={'created_at': 'date'})
 
-
+# Combine the two dataframes
 df_fomc['Source'] = 'FOMC Statement'
 df_reddit['Source'] = 'Reddit Posts'
 data = pd.concat([df_fomc, df_reddit])
@@ -39,18 +37,13 @@ def filter_data(data, selected_sentiments, selected_sources):
 def barplot_sentiment(data):
     # Group by 'Sentiment' and count occurrences
     counts = data.groupby('sentiment').size().reset_index(name='Count')
-
-    # Assuming 'counts' DataFrame has columns 'Sentiment' and 'Count'
     fig = px.bar(counts, x='sentiment', y='Count', color='sentiment',
                  labels={'Count': 'Number of Posts'}, title='Number of Posts by Sentiments',)
     return fig
 
 def line_numpost(data):
-    # Assuming 'data' has columns 'date' and 'sentiment'
-    
     # Count the occurrences of each sentiment for each date
     counts = data.groupby(['date', 'sentiment']).size().reset_index(name='Frequency')
-
     fig = px.line(counts, x='date', y='Frequency', color='sentiment',
                   labels={'Frequency': 'Number of Posts'}, title='Number of Posts by Sentiments and Date',)
     return fig
@@ -83,19 +76,24 @@ dropdown_sentiment = dbc.Card([
     ])
 ], body=True, color='light')
 
+
 # LAYOUT PAGE
 layout = html.Div([
-    # Dropdowns Menu
-    dbc.Row([
-        dbc.Col(dropdown_sentiment, md=4, style={'margin-top': '20px'}),
-    ]),
+    html.H4(children='The Purpose of our final project is to...'),
+    html.Div([
+        # Dropdowns Menu
+        dbc.Row([
+            dbc.Col(dropdown_sentiment, md=4, style={'margin-top': '20px'}),
+        ]),
 
-    # Barplot
-    dbc.Row([
-        dbc.Col(dcc.Graph(id='line_numpost'), md=6),
-        dbc.Col(dcc.Graph(id='bar_sentiment'), md=6),
+        # Barplot
+        dbc.Row([
+            dbc.Col(dcc.Graph(id='line_numpost'), md=6),
+            dbc.Col(dcc.Graph(id='bar_sentiment'), md=6),
+        ]),
     ]),
 ])  # End of Layout
+
 
 # CALLBACKS
 @callback(
