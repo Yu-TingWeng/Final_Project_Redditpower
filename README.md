@@ -67,44 +67,41 @@ Despite the interesting results we observed, several limitations could be improv
 
 ## Appendix 
 
+### Graph 1. Basic Classifications of Sentiments 
 ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.003.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.004.jpeg)
 
-Graph 1. Basic Classifications of Sentiments 
 
-![assets](FOMC-SP500.png) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.006.jpeg)
+### Graph 2. Line graphs showcasing the compound sentiment from FOMC statements and Reddit imposed on major stock indices 
 
-![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.007.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.008.jpeg)
+<img src="./assets/FOMC-SP500.png" alt="FOMC-SP500" width="500"/> <img src="./assets/Reddit_SP500.png" alt="Reddit-SP500" width="500"/>
 
-Graph 2. Line graphs showcasing the compound sentiment from FOMC statements and Reddit 
+<img src="./assets/FOMC-DJ.png" alt="FOMC-DJ" width="500"/> <img src="./assets/Reddit-DJ.png" alt="Reddit-DJ" width="500"/>
 
-imposed on major stock indices 
-
-![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.009.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.010.jpeg)
-
-Graph 3. Word clouds 
-
-![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.011.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.012.jpeg)
-
-Graph 4. Distribution of compound sentiment scores 
-
-![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.013.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.014.jpeg)
-
-Graph 5. Times series of compound sentiment scores 
-
-![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.015.jpeg) ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.016.jpeg)
-
-Graph 6. TOP20 Bigrams by Frequency 
+<img src="./assets/FOMC-NASDAQ.png" alt="FOMC-NASDAQ" width="500"/> <img src="./assets/Reddit-NASDAQ.png" alt="Reddit-NASDAQ" width="500"/>
 
 
+### Graph 3. Word clouds 
 
-|![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.017.jpeg)|![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.018.jpeg)|
-| - | - |
-|Chart 1. Regression summary table for FOMC-NASDAQ|Chart 2. Regression summary table for FOMC-Dow Jones |
-|![assets](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.019.jpeg)|![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.020.jpeg)|
-|Chart 3. Regression summary table for FOMC-S&P500 |Chart 4. Regression summary table for Reddit-NASDAQ |
-|![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.021.jpeg)|![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.022.jpeg)|
-|Chart 5. Regression summary table for Reddit-Dow Jones |Chart 6. Regression summary table for Reddit-S&P500 |
+<img src="./assets/wordcloud_fomc.png" alt="WordCloud-FOMC" width="500"/> <img src="./assets/wordcloud_reddit.png" alt="WordCloud-Reddit" width="500"/>
+
+
+### Graph 4. Distribution of compound sentiment scores 
+
+<img src="./assets/fomc_sentiment_histogram.png" alt="Histogram-FOMC" width="500"/> <img src="./assets/reddit_sentiment_histogram.png" alt="Histogram-Reddit" width="500"/>
+
+
+### Graph 5. Times series of compound sentiment scores 
+
+<img src="./assets/fomc_sentiment_time_series.png" alt="TimeSeries-FOMC" width="500"/> <img src="./assets/reddit_sentiment_time_series.png" alt="TimeSeries-Reddit" width="500"/>
+
+
+### Graph 6. TOP20 Bigrams by Frequency 
+
+<img src="./assets/top_bigrams_fomc.png" alt="bigrams-FOMC" width="500"/> <img src="./assets/top_bigrams_reddit.png" alt="bigrams-Reddit" width="500"/>
+
+### Regression Summary Table
+
+<img src="./assets/fomc_sp500_stat.png" alt="Stat-FOMC" width="500"/> <img src="./assets/reddit_sp500_stat.png" alt="Stat-Reddit" width="500"/>
 
 
 [^1]: On render and Dash package https://final-project-redditpower.onrender.com/ 
-[ref1]: Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.001.png
