@@ -6,11 +6,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from shiny import App, ui, reactive, render
 import sys
-sys.path.append(r"C:\Users\user\Documents\GitHub\final-project-redditpower")
+sys.path.append(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
 import Texts as text
 
 # Import Data
-path = r"C:\Users\user\Documents\GitHub\final-project-redditpower"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 'FOMC sentiment analysis scores.xlsx'))
 df_reddit = pd.read_excel(os.path.join(path, 'Reddit sentiment analysis scores.xlsx'))
 
@@ -192,11 +192,11 @@ app_ui = ui.page_fluid(
 def server (input, output, session): 
     @render.image 
     def wordcloud_fomc(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\wordcloud_fomc.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\wordcloud_fomc.png", 
                 'contentType': 'image/png'}
     @render.image 
     def wordcloud_reddit(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\wordcloud_reddit.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\wordcloud_reddit.png", 
                 'contentType': 'image/png'}
     
     @output
@@ -207,56 +207,56 @@ def server (input, output, session):
     
     @render.image 
     def histogram_fomc(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\fomc_sentiment_histogram.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\fomc_sentiment_histogram.png", 
                 'contentType': 'image/png'}
     @render.image 
     def histogram_reddit(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\reddit_sentiment_histogram.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\reddit_sentiment_histogram.png", 
                 'contentType': 'image/png'}
     
     @render.image 
     def time_series_fomc(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\fomc_sentiment_time_series.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\fomc_sentiment_time_series.png", 
                 'contentType': 'image/png'}
     @render.image 
     def time_series_reddit(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\reddit_sentiment_time_series.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\reddit_sentiment_time_series.png", 
                 'contentType': 'image/png'}
     
     @render.image 
     def top20_fomc(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\top_bigrams_fomc.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\top_bigrams_fomc.png", 
                 'contentType': 'image/png'}
     @render.image 
     def top20_reddit(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\top_bigrams_reddit.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\top_bigrams_reddit.png", 
                 'contentType': 'image/png'}
     
     @render.image 
     def fomc_sp500(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\FOMC-SP500.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\FOMC-SP500.png", 
                 'contentType': 'image/png'}
     @render.image 
     def reddit_sp500(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\Reddit_SP500.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\Reddit_SP500.png", 
                 'contentType': 'image/png'}
     
     @render.image 
     def fomc_dj(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\FOMC-DJ.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\FOMC-DJ.png", 
                 'contentType': 'image/png'}
     @render.image 
     def reddit_dj(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\Reddit-DJ.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\Reddit-DJ.png", 
                 'contentType': 'image/png'}
     
     @render.image 
     def fomc_nasdaq(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\FOMC-NASDAQ.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\FOMC-NASDAQ.png", 
                 'contentType': 'image/png'}
     @render.image 
     def reddit_nasdaq(): 
-        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\images\FOMC-NASDAQ.png", 
+        return {'src': r"C:\Users\user\Documents\GitHub\final-project-redditpower\assets\FOMC-NASDAQ.png", 
                 'contentType': 'image/png'}
     
     @reactive.Calc
