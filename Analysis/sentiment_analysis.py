@@ -14,7 +14,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 
 # Import FOMC Data
-path = r"C:\Users\user\Documents\GitHub\final-project-redditpower\Data"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower\Data"
 df_fomc = pd.read_excel(os.path.join(path, 'scraped_fomc_data.xlsx'))
 df_fomc = df_fomc[df_fomc['Title'].str.contains('FOMC statement')]
 

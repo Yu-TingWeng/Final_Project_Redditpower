@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 """
 Scrape S&P 500 from March 2022 to March 2023
-
 """
 import os
 import pandas as pd
@@ -11,7 +9,7 @@ import statsmodels.api as sm
 import numpy as np
 
 # Import dataframes
-path = r"C:\Users\yian_\OneDrive\文件\GitHub\final-project-redditpower"
+path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 df_fomc = pd.read_excel(os.path.join(path, 
                                      'FOMC sentiment analysis scores.xlsx'
                                      )
