@@ -6,7 +6,7 @@ from dash import html, dcc, callback, Input, Output, State
 import dash_bootstrap_components as dbc
 import sys
 sys.path.append(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower\Analysis")
-from .Analysis import sentiment_analysis as sa
+from Analysis import sentiment_analysis as sa
 import Texts as text
 
 
