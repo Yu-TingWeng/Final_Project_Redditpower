@@ -1,9 +1,9 @@
-
 """
 Sentiment Analysis for FOMC Statement and Reddit Posts
 """
 import pandas as pd
 import re
+import os
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import nltk
@@ -14,11 +14,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 
 # Import FOMC Data
-df_fomc = pd.read_excel('scraped_fomc_data.xlsx')
+path = r"C:\Users\user\Documents\GitHub\final-project-redditpower\Data"
+df_fomc = pd.read_excel(os.path.join(path, 'scraped_fomc_data.xlsx'))
 df_fomc = df_fomc[df_fomc['Title'].str.contains('FOMC statement')]
 
 # Import Reddit Data
-df_reddit = pd.read_excel('scraped_reddit_data.xlsx')
+df_reddit = pd.read_excel(os.path.join(path,'scraped_reddit_data.xlsx'))
 df_reddit['created_at'] = pd.to_datetime(df_reddit['created_at'])
 start_date = '2022-03-01'
 end_date = '2023-03-31'
@@ -133,8 +134,10 @@ def sentiment_define(x):
 df_fomc_sentiment['sentiment'] = df_fomc_sentiment['compound'].apply(sentiment_define)
 df_reddit_sentiment['sentiment'] = df_reddit_sentiment['compound'].apply(sentiment_define)
 
+# Save Files
 # df_fomc_sentiment.to_excel("FOMC sentiment analysis scores.xlsx", index=False)
 # df_reddit_sentiment.to_excel("Reddit sentiment analysis scores.xlsx", index=False)
+
 
 
 # PART III: Some Data Viz
@@ -153,9 +156,11 @@ def generate_word_cloud(data, text_column='', title=''):
     return fig, ax
 
 fig_fomc, ax_fomc = generate_word_cloud(df_fomc, text_column='clean text', title='FOMC Statement Word Cloud')
+# Save images
 # fig_fomc.savefig('wordcloud_fomc.png')
 
 fig_reddit, ax_reddit = generate_word_cloud(df_reddit, text_column='clean text', title='Reddit Word Cloud')
+# Save images
 # fig_reddit.savefig('wordcloud_reddit.png')
 
 
@@ -169,13 +174,15 @@ data = {
 }
 
 df_mean_compound = pd.DataFrame(data)
-
+# Save Files
+# df_mean_compound.to_excel("Mean Compound Scores.xlsx", index=False)
 
 # 3. Histogram of compound scores
 def plot_sentiment_histogram(df, df_name):
     '''
     Generate a histogram of compound sentiment scores for a DataFrame.
     '''
+    plt.figure(figsize=(10, 6))
     plt.hist(df['compound'], bins=20, color="#0c2d55", alpha=0.7)
     plt.title(f'Distribution of Compound Sentiment Scores for {df_name}')
     plt.xlabel('Compound Score')
@@ -187,11 +194,12 @@ plot_sentiment_histogram(df_reddit_sentiment, 'Reddit')
 
 # 4. Time Series Analysis:    
 # FOMC Statement
-df_fomc_sentiment['Date'] = pd.to_datetime(df_fomc_sentiment['Date'])
-df_fomc_sentiment.set_index('Date', inplace=True)
-df_fomc_sentiment['compound'].plot(title='Time Series of Compound Sentiment Scores for FOMC Statement')
+plt.figure(figsize=(10, 6)) 
+plt.plot(df_fomc_sentiment['Date'], df_fomc_sentiment['compound'])
+plt.title('Time Series of Compound Sentiment Scores for FOMC Statement')
 plt.xlabel('Date')
 plt.ylabel('Compound Score')
+# Save images 
 # plt.savefig('fomc_sentiment_time_series.png')
 
 # Reddit
@@ -202,11 +210,12 @@ plt.figure(figsize=(10, 6))
 monthly_mean.plot(title='Mean Compound Score by Month for Reddit')
 plt.xlabel('Date')
 plt.ylabel('Mean Compound Score')
+# Save images
 # plt.savefig('reddit_sentiment_time_series.png')
 
 
 # 5. Plot TOP20 unigrams and bigrams by frequency
-def plot_top_n_bigrams(data, df_name, n=20):
+def plot_top_n_bigrams(data, df_name, n=20, figsize=(10, 6)):
     """
     Plot the top N bigrams by frequency for a given DataFrame.
     """
@@ -222,8 +231,8 @@ def plot_top_n_bigrams(data, df_name, n=20):
     df_ngram = pd.DataFrame(sorted([(count_values[i], k) for k, i in vocab.items()], reverse=True),
                             columns=['frequency', 'words'])
 
-    plt.figure(figsize=(10, 6))
-    df_ngram.head(n).plot(kind='bar', x='words', y='frequency', color='#0c2d55')
+    plt.figure(figsize=figsize)
+    plt.bar(df_ngram['words'].head(n), df_ngram['frequency'].head(n), color='#0c2d55')
     plt.title(f'Top {n} Bigrams by Frequency for {df_name}')
     plt.xlabel('Words')
     plt.ylabel('Count')
@@ -257,7 +266,7 @@ accuracy = accuracy_score(y_test, svm_pred)
 print(f'Accuracy: {accuracy}')
 print(classification_report(y_test, svm_pred))
 
-# Cross-Validation
+# Cross-Validation (Testing Validation)
 from sklearn.model_selection import cross_val_score
 scores = cross_val_score(svm_model, X_train_tfidf, y_train, cv=5)
 print(f'Cross-Validation Scores: {scores}')

@@ -6,7 +6,7 @@ from datetime import datetime as dt
 import pandas as pd
 
 
-# Reddit API credentials
+# Reddit API credentials (id and password are intentionally deleted!)
 reddit= praw.Reddit(client_id = '',
                               client_secret = '',
                               user_agent = 'yuting17')
@@ -19,10 +19,8 @@ keywords = ['inflation', 'interest rate', 'unemployment rate', 'forecast', 'rece
 # List to store posts
 list_post = []
 
-# Iterate through submissions using subreddit.search
 for keyword in keywords:
     for submission in subreddit.search(keyword,  limit=None):
-        # Check if the submission is a post (not a comment)
         if not submission.stickied:
             list_post.append((submission, keyword))
 
@@ -49,8 +47,4 @@ for submission, keyword in list_post:
     })
 
 df = pd.DataFrame(df_data)
-
-# Save the DataFrame to an Excel file
 df.to_excel("scraped_reddit_data.xlsx", index=False)
-
-

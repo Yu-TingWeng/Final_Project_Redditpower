@@ -1,14 +1,25 @@
+# -*- coding: utf-8 -*-
 """
-Comparison between Stock Price and FOMC Statement, Reddit
+Scrape S&P 500 from March 2022 to March 2023
+
 """
+import os
 import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import numpy as np
 
-df_fomc = pd.read_excel('FOMC sentiment analysis scores.xlsx')
-df_reddit = pd.read_excel('Reddit sentiment analysis scores.xlsx')
+# Import dataframes
+path = r"C:\Users\yian_\OneDrive\文件\GitHub\final-project-redditpower"
+df_fomc = pd.read_excel(os.path.join(path, 
+                                     'FOMC sentiment analysis scores.xlsx'
+                                     )
+                        )
+df_reddit = pd.read_excel(os.path.join(path, 
+                                       'Reddit sentiment analysis scores.xlsx'
+                                       )
+                          )
 
 # Scraping stock prices from Yahoo! finance
 def scrape_stock(ticker, start_date, end_date):
@@ -144,7 +155,6 @@ def ols_analysis(df, stock_df, y_column='Close', x_column='compound'):
     model = sm.OLS(merged_df[y_column], X).fit()
     # Print the model summary
     print(model.summary())
-    
     # Calculate the correlation coefficient
     correlation = np.corrcoef(merged_df[x_column], merged_df[y_column])
 

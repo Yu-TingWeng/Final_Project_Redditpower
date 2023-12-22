@@ -36,7 +36,7 @@ from_date_input.send_keys("03/01/2022")
 to_date_input.send_keys("03/31/2023")    
 monetary_policy_checkbox.click()
 
-# Submit the form (assuming there's a submit button)
+# Submit the form 
 submit_button = driver.find_element(By.CSS_SELECTOR, 'div.eventSearch__submit a')
 submit_button.click()
 
@@ -82,20 +82,14 @@ def scrape_page_content(driver, url, data):
                     "Press Type": press_type,
                     "Linked Content": linked_content
                 })
-
-    # Return the updated data
     return data
 
 
 # Initialize an empty list to store the data
 data = []
 
-# Loop through three pages
 while True:
-    # Call the function to scrape the content of the current page
     data= scrape_page_content(driver, url, data)
-
-    # Your existing code to navigate to the next page, e.g., clicking the "Next" button
     try:
         next_page_button = driver.find_element(By.XPATH, '//li[@ng-if="::directionLinks" and @class="pagination-next ng-scope"]/a')
         next_page_button.click()
@@ -111,6 +105,4 @@ driver.quit()
 
 # Create a DataFrame from the collected data
 df = pd.DataFrame(data)
-
-# Save the DataFrame to an Excel file
 df.to_excel("scraped_fomc_data.xlsx", index=False)

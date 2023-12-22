@@ -6,14 +6,16 @@ import dash
 from dash import html, register_page, dash_table, dcc, callback, Output, Input
 import pandas as pd
 
+
 dash.register_page(__name__)
 
+
 # Import FOMC Data
-df_fomc = pd.read_excel('scraped_fomc_data.xlsx')
+df_fomc = pd.read_excel(r"C:\Users\user\Documents\GitHub\final-project-redditpower\Data\scraped_fomc_data.xlsx")
 df_fomc = df_fomc[df_fomc['Title'].str.contains('FOMC statement')]
 
 # Import Reddit Data
-df_reddit = pd.read_excel('scraped_reddit_data.xlsx')
+df_reddit = pd.read_excel(r"C:\Users\user\Documents\GitHub\final-project-redditpower\Data\scraped_reddit_data.xlsx")
 df_reddit['created_at'] = pd.to_datetime(df_reddit['created_at'])
 start_date = '2022-03-01'
 end_date = '2023-03-31'
