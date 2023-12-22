@@ -1,17 +1,16 @@
-PPHA 30538 4,3,2,1 Data and Programming for Public Policy II – Python: Final Project ![ref1]
-
+<h1>PPHA 30538 4,3,2,1 Data and Programming for Public Policy II – Python: Final Project <h1>
 r/Wallstreetbets: A Hitchhiker’s Guide to the Moon or to the Ground? 
 
-Team members: Andrew Chen & Yuting Weng ![](Aspose.Words.998fac69-882f-424a-984f-3a968cd9a4c4.002.png)
+Author: Yuting Weng
 
-Purpose of the project 
+<h3>Purpose of the project <h3>
+<p>This project seeks to preliminarily explore the relationship between the sentiment espoused on the popular internet forum, Reddit’s r/Wallstreetbets subreddit, and the stock market (as a proxy for the US economy) and compare it to that of the Federal Open Market Committee (FOMC) statements, one year from the start of the latest interest rate hike cycle in March 2022. Known for risky stock bets, edgy humor, and viral popularity during the COVID-19 Pandemic, we wanted to know whether the Redditors on r/Wallstreetbets have an accurate gauge of the macroeconomy – is it a Hitchhiker’s Guide to the Moon or to the ground?
 
-This project seeks to preliminarily explore the relationship between the sentiment espoused on the popular internet forum, Reddit’s r/Wallstreetbets subreddit, and the stock market (as a proxy for the US economy) and compare it to that of the Federal Open Market Committee (FOMC) statements, one year from the start of the latest interest rate hike cycle in March 2022. Known for risky stock bets, edgy humor, and viral popularity during the COVID-19 Pandemic, we wanted to know whether the Redditors on r/Wallstreetbets have an accurate gauge of the macroeconomy – is it a Hitchhiker’s Guide to the Moon or to the ground? 
+We expect to see a minimum or even negative correlation between Reddit sentiments and stock closing prices and a positive correlation between FOMC statements sentiments and stock closing prices.  <p>
 
-We expect to see a minimum or even negative correlation between Reddit sentiments and stock closing prices and a positive correlation between FOMC statements sentiments and stock closing prices. 
+<Br>
 
-Method and data processing 
-
+<h3> Method and data processing <h3>
 To answer the above question, we decided to conduct sentiment analysis and calculate compound sentiment scores (mean compound sentiment scores for Reddit posts) for each data entry and run regressions on stock indices S&P 500/Dow Jones/NASDAQ (proxy of the US economy). 
 
 We  scraped  FOMC  statements  from  the  Federal  Reserve’s  official  website (https://www.federalreserve.gov/newsevents/pressreleases.htm)  and  posts  from  the  Reddit subreddit r/Wallstreetbets (https://www.reddit.com/r/wallstreetbets/ ) between March 1st, 2022 to March 31st, 2023. The start date was chosen since the FED started announcing a series of Federal Funds Rate hikes to ease the post-pandemic inflation not seen in decades.  
