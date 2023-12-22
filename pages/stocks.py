@@ -3,7 +3,7 @@ Display the correlation between FOMC Statement, Reddit, and Stock Prices
 '''
 import dash
 from dash import html, register_page, get_asset_url, dash_table
-from sentiment_analysis import df_mean_compound
+from Analysis.sentiment_analysis import df_mean_compound
 import Texts as text
 
 
