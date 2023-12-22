@@ -6,17 +6,14 @@ from dash import html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
-import os
-
 
 dash.register_page(__name__, path='/')
 
 
 # Import Data
-path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
 
-df_fomc = pd.read_excel(os.path.join(path, "FOMC sentiment analysis scores.xlsx"))
-df_reddit = pd.read_excel(os.path.join(path, "Reddit sentiment analysis scores.xlsx"))
+df_fomc = pd.read_excel(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower\Data\FOMC sentiment analysis scores.xlsx")
+df_reddit = pd.read_excel(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower\Data\Reddit sentiment analysis scores.xlsx")
 
 # Rename 'Date' column to 'date'
 df_fomc = df_fomc.rename(columns={'Date': 'date'})

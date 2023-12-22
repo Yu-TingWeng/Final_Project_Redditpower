@@ -4,8 +4,6 @@ Display the correlation between FOMC Statement, Reddit, and Stock Prices
 import dash
 from dash import html, register_page, get_asset_url, dash_table
 from sentiment_analysis import df_mean_compound
-import sys
-sys.path.append(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
 import Texts as text
 
 

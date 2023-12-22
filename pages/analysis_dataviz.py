@@ -3,19 +3,17 @@ Display Sentiment Analysis
 """
 import dash
 from dash import html, register_page, get_asset_url, dash_table
-import sys
-sys.path.append(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
+#import sys
+#sys.path.append(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower")
 import Texts as text
 import pandas as pd
-import os
 
 
 dash.register_page(__name__, path="/analysis_dataviz") 
 
 
 # Import Data
-path = r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower"
-df_mean_compound = pd.read_excel(os.path.join(path, "Mean Compound Scores.xlsx"))
+df_mean_compound = pd.read_excel(r"C:\Users\user\Documents\GitHub\Final_Project_Redditpower\Data\Mean Compound Scores.xlsx")
 
 
 # LAYOUT PAGE
